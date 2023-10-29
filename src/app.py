@@ -1,3 +1,5 @@
+from os import getenv
+
 import requests
 
 from config import SERVER, TOKEN, TOPIC
@@ -11,17 +13,19 @@ class Ntfy:
 
     def send(
         self,
-        message: str,
+        message: str = "",
         title: str = "",
-        priority: str = "urgent",
+        priority: str = "high",
     ):
+        message = message or getenv("MESSAGE", "")
+        title = title or getenv("TITLE", "")
         response = requests.post(
             url=f"{self.server}/{self.topic}",
             data=message,
             headers={
                 "Authorization": f"Bearer {self.token}",
                 "t": title or message,
-                "p": priority,
+                "Priority": priority,
                 "ta": "warning",
             },
         )
@@ -30,4 +34,4 @@ class Ntfy:
 
 if __name__ == "__main__":
     app = Ntfy(SERVER, TOPIC, TOKEN)
-    app.send("test")
+    app.send()

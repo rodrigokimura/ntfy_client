@@ -1,5 +1,5 @@
 from decouple import config
 
-SERVER = config("SERVER")
-TOPIC = config("TOPIC")
-TOKEN = config("TOKEN")
+SERVER = str(config("SERVER"))
+TOPIC = str(config("TOPIC"))
+TOKEN = str(config("TOKEN"))
