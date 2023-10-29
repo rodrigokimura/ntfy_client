@@ -36,7 +36,7 @@ class Ntfy:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("ntfyc")
     parser.add_argument("message", help="Message", type=str)
-    parser.add_argument("title", help="Title", type=str)
+    parser.add_argument("title", nargs="?", help="Title", type=str, default="")
     args = parser.parse_args()
     app = Ntfy(SERVER, TOPIC, TOKEN)
     app.send(args.message, args.title)
