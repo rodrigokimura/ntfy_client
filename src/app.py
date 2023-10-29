@@ -20,9 +20,9 @@ class Ntfy:
             data=message,
             headers={
                 "Authorization": f"Bearer {self.token}",
-                "Title": title or message,
-                "Priority": priority,
-                "Tags": "warning",
+                "t": title or message,
+                "p": priority,
+                "ta": "warning",
             },
         )
         print(response.status_code)
